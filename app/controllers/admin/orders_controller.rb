@@ -1,6 +1,5 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
-  
   def index
     @orders = Order.page(params[:page]).per(10)
   end
@@ -21,18 +20,20 @@ class Admin::OrdersController < ApplicationController
         order_detail.update(making_status: 1)
       end
     end
+    
   end
   
   def today_order_index
+    
   end
   
   def current_index
+    
   end
   
   private
   
   def order_params
-    params.require(:order).permit(:postage,:billing_amount,:name,:payment_method,:address,:postal_code,:status,:production_status)
+    params.require(:order).permit(:shipping_cost,:total_payment,:name,:payment_method,:address,:postal_code,:status,:making_status)
   end
-  
 end

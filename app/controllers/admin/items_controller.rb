@@ -1,12 +1,11 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
-  
   def index
     @items = Item.page(params[:page]).per(10)
   end
   
   def show
-    @item = Item.find(params[:id])
+     @item = Item.find(params[:id])
   end
   
   def edit
@@ -14,14 +13,14 @@ class Admin::ItemsController < ApplicationController
   end
   
   def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-      flash[:notice] = "商品詳細の変更が完了しました。"
-      redirect_to admin_item_path(@item)
-    else
-      flash[:alert] = "商品詳細の変更内容に不備があります。"
-      render :edit
-    end
+     @item = Item.find(params[:id])
+     if @item.update(item_params)
+       flash[:notice] = "商品詳細の変更が完了しました。"
+       redirect_to admin_item_path(@item)
+     else
+       flash[:alert] = "商品詳細の変更内容に不備があります。"
+       render :edit
+     end
   end
   
   def new
