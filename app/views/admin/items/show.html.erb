@@ -29,12 +29,12 @@
         <tr>
           <th>販売ステータス</th>
           <td>
-            <% if @item.is_active == true %>
-              <p class="text-success ">販売中</p>
-            <% else %>
-              <p class="text-secondary ">販売停止中</p>
-            <% end %>
-          </td>
+          <% if @item.is_active == true %>
+            <p class="text-success ">販売中</p>
+          <% else %>
+            <p class="text-secondary ">販売停止中</p>
+          <% end %>
+            </td>
         </tr>
       </table>
       <div class="d-flex justify-content-around">
@@ -43,4 +43,4 @@
       </div>
     </div>
   </div>
- </div>
+</div>

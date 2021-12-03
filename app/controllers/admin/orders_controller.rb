@@ -17,7 +17,7 @@ class Admin::OrdersController < ApplicationController
 
     if @order.status == "入金確認"
       @order.order_details.each do |order_detail|
-        order_detail.update(making_status: 1)
+        order_detail.update(status: 1)
       end
     end
     
@@ -34,6 +34,6 @@ class Admin::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:shipping_cost,:total_payment,:name,:payment_method,:address,:postal_code,:status,:making_status)
+    params.require(:order).permit(:postage,:billing_amount,:name,:payment_method,:address,:postal_code,:status)
   end
 end
