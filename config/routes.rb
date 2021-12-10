@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   # customer
   devise_for :customers, :controllers => {
     :sessions => 'public/sessions',
@@ -31,33 +31,35 @@ Rails.application.routes.draw do
     :passwords => 'public/passwords'
   }
 
-  root 'homes#top'
-
-  resources :items,only: [:index,:show]
-
-  get 'edit/customers' => 'customers#edit'
-  patch 'update/customers' => 'customers#update'
+  get 'about' => 'public/homes#about'
+  root 'public/homes#top'
+  
+  scope module: :public do
+    resources :items,only: [:index,:show]
+    get 'edit/customers' => 'customers#edit'
+    patch 'update/customers' => 'customers#update'
     
-  resource :customers,only: [:edit,:update,:show] do
-    collection do
-  	   get 'quit'
-  	   patch 'out'
+  	resource :customers,only: [:edit,:update,:show] do
+  		collection do
+  	     get 'quit'
+  	     patch 'out'
+  	  end
   	end
-  end
 
-  resources :cart_items,only: [:index,:update,:create,:destroy] do
-    collection do
-      delete '/' => 'cart_items#all_destroy'
+      resources :cart_items,only: [:index,:update,:create,:destroy] do
+        collection do
+          delete '/' => 'cart_items#all_destroy'
+        end
+      end
+
+      resources :orders,only: [:new,:index,:show,:create] do
+        collection do
+          post 'confirm'
+          get 'thanks'
+        end
+      end
+
+      resources :addresses,only: [:index,:create,:edit,:update,:destroy]
     end
-  end
-
-  resources :orders,only: [:new,:index,:show,:create] do
-    collection do
-      post 'confirm'
-      get 'thanks'
-    end
-  end
-
-  resources :addresses,only: [:index,:create,:edit,:update,:destroy]
 
 end
