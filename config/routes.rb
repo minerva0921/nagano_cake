@@ -26,9 +26,9 @@ Rails.application.routes.draw do
 
   # customer
   devise_for :customers, :controllers => {
-    :sessions => 'public/sessions',
-    :registrations => 'public/registrations',
-    :passwords => 'public/passwords'
+    :sessions => 'public/customers/sessions',
+    :registrations => 'public/customers/registrations',
+    :passwords => 'public/customers/passwords'
   }
 
   get 'about' => 'public/homes#about'
