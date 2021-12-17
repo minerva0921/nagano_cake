@@ -2,7 +2,7 @@
 <h3><%= @item.name %></h3>
 <p><%= @item.introduction %></p>
 <% if @item.is_active == true %>
-  <h4>¥<%= (@item.price * 1.08).to_i.to_s(:delimited, delimiter: ',') %></h4>
+  <h4>¥<%= (@item.price * 1.10).to_i.to_s(:delimited, delimiter: ',') %></h4>
   <p>(税込)</p>
   <%= form_with model:@cart_item, url: cart_items_path, method: :post do |f| %>
     <%= f.hidden_field :item_id, value: @item.id %>
