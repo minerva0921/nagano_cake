@@ -1,4 +1,3 @@
-<% provide(:title, "注文履歴詳細") %>
 <h2>注文履歴詳細</h2>
 <% if @order.present? %>
 	<strong>注文情報</strong>
@@ -6,13 +5,13 @@
     <tbody>
       <tr>
         <th>注文日</th>
-  	    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
       </tr>
       <tr>
         <th>配送先</th>
         <td><%= @order.postal_code %><br>
-      	  <%= @order.address %><br>
-      	  <%= @order.name %>
+          <%= @order.address %><br>
+          <%= @order.name %>
         </td>
       </tr>
       <tr>
@@ -33,11 +32,11 @@
     </tr>
     <tr>
       <th>配送料</th>
-      <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+      <td><%= @order.postage.to_s(:delimited) %>円</td>
     </tr>
     <tr>
       <th>ご請求金額</th>
-      <td><%= @order.total_payment.to_s(:delimited) %>円</td>
+      <td><%= @order.billing_amount.to_s(:delimited) %>円</td>
     </tr>
   </table>
 	<strong>注文内容</strong>

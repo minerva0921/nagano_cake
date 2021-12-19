@@ -7,22 +7,22 @@ class Item < ApplicationRecord
   attachment :image
 
   validates :name, presence: true
-  validates :image_id, presence: true
+  validates :image, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
   validates :genre_id, presence: true
-  
+
   def self.search_for(content,method)
     return none if content.blank?
      if method == 'perfect'
        Item.where(name: content)
-       
+
      elsif method == 'forward'
        Item.where('name LIKE ?', content + '%')
-       
+
      elsif method == 'backword'
        Item.where('name LIKE ?', '%' + content)
-       
+
      else
        Item.where('name LIKE ?', '%' + content + '%')
      end

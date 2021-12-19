@@ -1,4 +1,3 @@
-<% provide(:title, "注文一覧") %>
 <div class="container">
   <h2 class="my-5">注文履歴一覧</h2>
   <table class="table">
@@ -17,7 +16,7 @@
               <%= order.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
             <% end %>
           </td>
-          <td><%= full_name(order.customer)%></td>
+          <td><%= last_name(order.customer)%><%= first_name(order.customer)%></td>
           <td><%= order.order_details.count%></td>
           <td><%= order.status%></td>
         </tr>
