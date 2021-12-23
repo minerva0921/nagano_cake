@@ -1,8 +1,12 @@
 module ApplicationHelper
+  def full_name(customer)
+    customer.last_name + customer.first_name
+  end
+  
   def full_address(key)
     "#{key.postal_code}#{key.address}"
   end
-
+  
   def current_cart
     @cart_items = current_customer.cart_items
   end
