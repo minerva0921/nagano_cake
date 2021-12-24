@@ -22,7 +22,7 @@
                 ¥<%= cart.item.tax_in_price.to_s(:delimited) %>
               </td>
               <td class="text-right">
-                  <%= cart.count %>
+                  <%= cart.amount %>
               </td>
               <td class="text-right">
                 ¥<%= sub_price(cart).to_s(:delimited) %>
@@ -45,7 +45,7 @@
           </tr>
           <tr>
             <th class="info">請求金額</th>
-            <td class="text-right">¥<%= billing_amount(@order).to_s(:delimited) %></td>
+            <td class="text-right">¥<%= billing(@order).to_s(:delimited) %></td>
           </tr>
       </table>
     </div>

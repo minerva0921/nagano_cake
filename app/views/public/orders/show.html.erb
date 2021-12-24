@@ -54,7 +54,7 @@
       <tr>
 		    <td><%= order_detail.item.name %></td>
 		    <td><%= order_detail.item.tax_in_price.to_s(:delimited) %>円</td>
-		    <td><%= order_detail.count %></td>
+		    <td><%= order_detail.amount %></td>
 		    <td><%= order_detail.tax_in_price.to_s(:delimited) %>円</td>
       </tr>
     <% end %>

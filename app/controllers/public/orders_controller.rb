@@ -23,8 +23,9 @@ class Public::OrdersController < ApplicationController
       customer: current_customer,
       payment_method: params[:order][:payment_method])
 
-    # total_paymentに請求額を入れる billingはhelperで定義
-    @order.total_payment = billing(@order)
+    # billing_amountに請求額を入れる billingはhelperで定義
+    @order.postage = 800
+    @order.billing_amount = billing(@order)
 
     # my_addressに1が入っていれば（自宅）
     if params[:order][:my_address] == "1"
@@ -34,17 +35,17 @@ class Public::OrdersController < ApplicationController
 
     # my_addressに2が入っていれば（配送先一覧）
     elsif params[:order][:my_address] == "2"
-      ship = Address.find(params[:order][:address_id])
-      @order.postal_code = ship.postal_code
-      @order.address = ship.address
-      @order.name = ship.name
+      postal = Address.find(params[:order][:address_id])
+      @order.postal_code = postal.postal_code
+      @order.address = postal.address
+      @order.name = postal.name
 
     # my_addressに3が入っていれば(新配送先)
     elsif params[:order][:my_address] == "3"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-      @ship = "1"
+      @postal = "1"
 
     # 有効かどうかの確認
       unless @order.valid? == true
@@ -59,7 +60,7 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     # 情報入力に新規配送先があれば保存
-    if params[:order][:ship] =="1"
+    if params[:order][:postal] =="1"
       current_customer.address.create(address_params)
     end
 
@@ -69,10 +70,10 @@ class Public::OrdersController < ApplicationController
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart_item.item_id
       @order_detail.order_id = @order.id
-      @order_detail.amount = cart_item.amount
-      @order_detail.price = cart_item.item.price * cart_item.amount 
+      @order_detail.order_quantity = cart_item.amount
+      @order_detail.settlement_amount = cart_item.item.price * cart_item.amount
       @order_detail.save
-      end
+    end
     # 最後にカートを全て削除する
     @cart_items.destroy_all
 

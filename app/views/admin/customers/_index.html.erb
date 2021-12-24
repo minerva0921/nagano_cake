@@ -7,7 +7,7 @@
       <th>ステータス</th>
     </tr>
   </thead>
-        
+
   <tbody>
     <% customers.each do |customer| %>
      <tr>
@@ -22,9 +22,9 @@
       </td>
       <td class="col-xs-2">
         <% if customer.is_active == true%>
-          <p class="text-secondary">退会済</p>
-        <% else %>
           <p class="text-success">有効</p>
+        <% else %>
+          <p class="text-secondary">退会</p>
         <% end %>
       </td>
     </tr>
