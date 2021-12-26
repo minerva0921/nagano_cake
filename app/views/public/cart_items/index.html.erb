@@ -19,7 +19,7 @@
         <th><%= i.item.tax_in_price.to_s(:delimited, delimiter: ',') %></th>
         <th>
           <%= form_with model:i, url: cart_item_path(i), method: :patch , remote: true do |f| %>
-          <%= f.number_field :count, size: 10, min: 1 %>
+          <%= f.number_field :amount, size: 10, min: 1 %>
           <%= f.submit "変更", class: "btn btn-success" %>
           <% end %>
         </th>

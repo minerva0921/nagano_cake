@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   	resources :orders,only: [:index,:show,:update] do
   	  member do
         get :current_index
-        resource :order_details,only: [:update]
+        resource :order_details,only: [:show,:update]
       end
       collection do
         get :today_order_index
@@ -30,12 +30,12 @@ Rails.application.routes.draw do
 
   get 'about' => 'public/homes#about'
   root 'public/homes#top'
-  
+
   scope module: :public do
     resources :items,only: [:index,:show]
     get 'edit/customers' => 'customers#edit'
     patch 'update/customers' => 'customers#update'
-    
+
   	resource :customers,only: [:edit,:update,:show] do
   		collection do
   	     get 'quit'

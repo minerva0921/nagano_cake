@@ -27,20 +27,20 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @order.billing_amount = billing(@order)
 
-    # my_addressに1が入っていれば（自宅）
+    # my_address：１（自宅）
     if params[:order][:my_address] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = full_name(current_customer)
 
-    # my_addressに2が入っていれば（配送先一覧）
+    # my_address：２（登録済配送先）
     elsif params[:order][:my_address] == "2"
       postal = Address.find(params[:order][:address_id])
       @order.postal_code = postal.postal_code
       @order.address = postal.address
       @order.name = postal.name
 
-    # my_addressに3が入っていれば(新配送先)
+    # my_address：３(新配送先入力)
     elsif params[:order][:my_address] == "3"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
@@ -71,9 +71,10 @@ class Public::OrdersController < ApplicationController
       @order_detail.item_id = cart_item.item_id
       @order_detail.order_id = @order.id
       @order_detail.order_quantity = cart_item.amount
-      @order_detail.settlement_amount = cart_item.item.price * cart_item.amount
+      @order_detail.settlement_amount = cart_item.item.tax_in_price * cart_item.amount
       @order_detail.save
     end
+
     # 最後にカートを全て削除する
     @cart_items.destroy_all
 

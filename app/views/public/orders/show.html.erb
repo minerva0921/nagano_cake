@@ -28,7 +28,7 @@
 	<table class="table table-bordered table-condensed">
     <tr>
       <th>商品合計</th>
-      <td><%= total_price(@order_details).to_s(:delimited) %>円</td>
+      <td><%= (@order.billing_amount -  @order.postage).to_s(:delimited) %>円</td>
     </tr>
     <tr>
       <th>配送料</th>
@@ -54,8 +54,8 @@
       <tr>
 		    <td><%= order_detail.item.name %></td>
 		    <td><%= order_detail.item.tax_in_price.to_s(:delimited) %>円</td>
-		    <td><%= order_detail.amount %></td>
-		    <td><%= order_detail.tax_in_price.to_s(:delimited) %>円</td>
+		    <td><%= order_detail.order_quantity %></td>
+		    <td><%= (order_detail.item.tax_in_price * order_detail.order_quantity).to_s(:delimited) %>円</td>
       </tr>
     <% end %>
     </tbody>

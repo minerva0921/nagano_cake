@@ -13,7 +13,7 @@ module ApplicationHelper
 
   # 小計の計算
   def sub_price(sub)
-    sub.item.tax_in_price * sub.amount
+    sub.item.tax_in_price * sub.order_quantity
   end
 
   # 合計金額の計算
@@ -30,13 +30,4 @@ module ApplicationHelper
     total_price(current_cart) + order.postage
   end
 
-# タブへの表示
-	def full_title(title = "")
-	  base = "NaganoCake"
-	  if admin_signed_in?
-	    base + " | " + "管理者用 #{title}"
-	  else
-	    base + " | " + "#{title}"
-	  end
-	end
 end

@@ -7,22 +7,22 @@
         <th>購入者</th>
         <th>注文個数</th>
         <th>注文ステータス</th>
-      </tr>      
+      </tr>
       <tbody>
         <% @orders.each do |order| %>
         <tr>
           <td>
-            <%= link_to admin_order_detail_path(order) do%>
+            <%= link_to admin_order_details_path(order) do%>
               <%= order.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
             <% end %>
           </td>
-          <td><%= last_name(order.customer)%><%= first_name(order.customer)%></td>
-          <td><%= order.order_details.amount%></td>
+          <td><%= full_name(order.customer)%></td>
+          <td><%= order.order_details.count%></td>
           <td><%= order.status%></td>
         </tr>
         <% end %>
       </tbody>
     </thead>
   </table>
-   <div class="d-flex justify-content-center"><%= paginate(@orders)%></div>
+  <div class="d-flex justify-content-center"><%= paginate(@orders)%></div>
 </div>
