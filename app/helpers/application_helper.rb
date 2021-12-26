@@ -13,7 +13,7 @@ module ApplicationHelper
 
   # 小計の計算
   def sub_price(sub)
-    sub.item.tax_in_price * sub.order_quantity
+    sub.item.tax_in_price * sub.amount
   end
 
   # 合計金額の計算

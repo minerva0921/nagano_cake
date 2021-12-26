@@ -31,7 +31,7 @@ class Admin::OrderDetailsController < ApplicationController
   private
 
   def order_detail_params
-    #params.require(:order_detail).permit(:item_id, :order_id, :order_quantity, :settlement_amount, :production_status)
-    params.permit(:item_id, :order_id, :order_quantity, :settlement_amount, :production_status)
+    params.require(:order_detail).permit(:item_id, :order_id, :order_quantity, :settlement_amount, :production_status)
+    #params.permit(:item_id, :order_id, :order_quantity, :settlement_amount, :production_status)
   end
 end

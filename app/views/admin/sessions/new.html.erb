@@ -4,26 +4,26 @@
     <div class="col">
       <div class="col-6 offset-3">
         <h3>管理者ログイン</h3>
-        
+
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        
+
           <div class="field my-2">
             <%= f.label :"メールアドレス",class:"form-label mt-3"%><br />
             <%= f.email_field :email, autofocus: true,placeholder:"例）nagano_cake@example.com", autocomplete: "email",class:"form-control" %>
           </div>
-        
+
           <div class="field my-2">
             <%= f.label :"パスワード",class:"form-label mt-3" %><br />
             <%= f.password_field :password,placeholder:"例）xxxxxx", autocomplete: "current-password",class:"form-control" %>
           </div>
-      
+
           <div class="actions my-2 text-center">
             <%= f.submit "Log in",class:"btn btn-primary mt-3" %>
           </div>
         <% end %>
-        
+
       </div>
-      
+
     </div>
   </div>
 </div>
